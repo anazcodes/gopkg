@@ -1,0 +1,26 @@
+package otel
+
+import (
+	"context"
+)
+
+type ctxKey int
+
+const (
+	tracerKey ctxKey = iota + 1
+	traceIDKey
+)
+
+func SetTraceID(ctx context.Context, traceID string) context.Context {
+	return context.WithValue(ctx, traceIDKey, traceID)
+}
+
+// GetTraceID returns the trace id from the context.
+func GetTraceID(ctx context.Context) string {
+	v, ok := ctx.Value(traceIDKey).(string)
+	if !ok {
+		return "00000000000000000000000000000000"
+	}
+
+	return v
+}
