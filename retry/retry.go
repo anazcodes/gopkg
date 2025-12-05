@@ -6,15 +6,15 @@ import (
 	"time"
 )
 
-// Client defines retry behavior.
-type Client struct {
+// Retryer defines retry behavior.
+type Retryer struct {
 	MaxRetries int
 	Delay      time.Duration
 	Backoff    bool // if true, doubles delay each retry
 }
 
 // Do executes the given function with retry logic.
-func (c *Client) Do(ctx context.Context, fn func() error) error {
+func (c *Retryer) Do(ctx context.Context, fn func() error) error {
 	if c.MaxRetries <= 0 {
 		c.MaxRetries = 1
 	}
