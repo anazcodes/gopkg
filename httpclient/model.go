@@ -29,7 +29,7 @@ func responseError(err error, url, method, curl string) Response {
 	}
 }
 
-// IsStatus2XX returns true if the status code is between 200 and 299
-func (r Response) IsStatus2XX() bool {
+// IsStatusOk returns true if the status code is between 200 and 299
+func (r Response) IsStatusOk() bool {
 	return r.Status >= 200 && r.Status < 300
 }
