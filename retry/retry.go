@@ -6,23 +6,23 @@ import (
 	"time"
 )
 
-// Config defines retry behavior.
-type Config struct {
+// Client defines retry behavior.
+type Client struct {
 	MaxRetries int
 	Delay      time.Duration
 	Backoff    bool // if true, doubles delay each retry
 }
 
 // Do executes the given function with retry logic.
-func Do(ctx context.Context, cfg Config, fn func() error) error {
-	if cfg.MaxRetries <= 0 {
-		cfg.MaxRetries = 1
+func (c *Client) Do(ctx context.Context, fn func() error) error {
+	if c.MaxRetries <= 0 {
+		c.MaxRetries = 1
 	}
 
-	delay := cfg.Delay
+	delay := c.Delay
 	var lastErr error
 
-	for i := 0; i < cfg.MaxRetries; i++ {
+	for i := 0; i < c.MaxRetries; i++ {
 		select {
 		case <-ctx.Done():
 			return ctx.Err()
@@ -33,9 +33,9 @@ func Do(ctx context.Context, cfg Config, fn func() error) error {
 			}
 
 			// Wait before retrying
-			if i < cfg.MaxRetries-1 {
+			if i < c.MaxRetries-1 {
 				time.Sleep(delay)
-				if cfg.Backoff {
+				if c.Backoff {
 					delay *= 2
 				}
 			}
