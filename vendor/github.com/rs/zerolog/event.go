@@ -21,7 +21,6 @@ var eventPool = &sync.Pool{
 // Event represents a log event. It is instanced by one of the level method of
 // Logger and finalized by the Msg or Msgf method.
 type Event struct {
-	Buf       []byte
 	buf       []byte
 	w         LevelWriter
 	level     Level
@@ -166,7 +165,6 @@ func (e *Event) Fields(fields interface{}) *Event {
 		return e
 	}
 	e.buf = appendFields(e.buf, fields, e.stack)
-	e.Buf = e.buf
 	return e
 }
 
