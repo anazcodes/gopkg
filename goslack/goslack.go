@@ -18,12 +18,6 @@ const (
 	SeveritySuccess Severity = "success"
 )
 
-var GlobalClient *Client
-
-func (e *Client) SetGlobalClient() {
-	GlobalClient = e
-}
-
 type Client struct {
 	client   *slack.Client
 	channel  string
