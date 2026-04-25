@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/Turinix/gopkg/otel"
+	"github.com/anazcodes/gopkg/otel"
 	"github.com/rs/zerolog"
 )
 
