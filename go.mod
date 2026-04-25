@@ -1,4 +1,4 @@
-module github.com/Turinix/gopkg
+module github.com/anazcodes/gopkg
 
 go 1.23.0
 
