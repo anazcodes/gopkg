@@ -1,0 +1,41 @@
+# gopkg AI Context
+
+> This file is intended for LLMs and AI coding assistants to quickly understand the context, structure, and capabilities of the `gopkg` repository.
+
+## Repository Overview
+- **Module Path**: `github.com/anazcodes/gopkg`
+- **Language**: Go (1.23+)
+- **Purpose**: A monorepo of reusable Go utilities and packages for backend development, simplifying common tasks like logging, retries, database interactions, and integrations.
+
+## Core Packages
+
+1. **`retry`**
+   - Location: `/retry`
+   - Purpose: Provides a `Retryer` struct for executing functions with retry logic.
+   - Features: Configurable max retries, base delay, and exponential backoff (`Backoff: true`). Supports `context.Context` for cancellation.
+
+2. **`logger`**
+   - Location: `/logger`
+   - Purpose: Structured logging setup.
+   - Dependencies: Relies on `github.com/rs/zerolog` and `gopkg.in/natefinch/lumberjack.v2` (for log rotation).
+
+3. **`pgxtype`**
+   - Location: `/pgxtype`
+   - Purpose: Custom PostgreSQL types and helpers built on top of `github.com/jackc/pgx/v5`.
+
+4. **`goslack`**
+   - Location: `/goslack`
+   - Purpose: Wrappers and utilities around Slack APIs.
+
+5. **`otel`**
+   - Location: `/otel`
+   - Purpose: OpenTelemetry instrumentation helpers.
+
+6. **`httpclient`**
+   - Location: `/httpclient`
+   - Purpose: A resilient wrapper around standard `net/http` client.
+
+## Coding Standards & Patterns
+- Uses `context.Context` as the first argument in all exported functions that perform I/O or blocks.
+- Returns explicit `error` values rather than panicking.
+- Relies heavily on dependency injection and struct-based configuration (e.g., `Retryer` struct rather than global retry config).

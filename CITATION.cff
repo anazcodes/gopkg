@@ -1,0 +1,21 @@
+cff-version: 1.2.0
+title: gopkg
+message: >-
+  If you use this software in your research or project, please cite it using
+  the metadata from this file.
+type: software
+authors:
+  - given-names: Anaz
+    alias: anazcodes
+repository-code: 'https://github.com/anazcodes/gopkg'
+abstract: >-
+  A collection of reusable, robust Go packages and utilities designed to
+  accelerate backend development. Includes utilities for HTTP clients, 
+  OpenTelemetry, Postgres type extensions, logging, and retry mechanisms.
+keywords:
+  - go
+  - golang
+  - utilities
+  - library
+  - backend
+license: MIT
